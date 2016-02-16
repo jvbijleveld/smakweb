@@ -1,0 +1,19 @@
+<div class="recipeContainer">
+
+    <a href="#/recipe/edit/{{recipe.id}}"><div class="glyphicon glyphicon-edit"></div></a>
+    
+    <h2>{{recipe.name}}</h2>
+    
+    <p>{{recipe.description}}</p>
+    
+    <p ng-hide="recipe">Het recept wordt opgehaald...</p>
+    
+    <h3>Hoe te maken</h3>
+    <div ng-repeat="instruction in recipe.instructions" class="instructionContainer">
+       	<p class="instruction">{{instruction.instruction}}</p>
+        <ul>
+        	<li ng-repeat="ingredients in instruction.ingredients" class="ingredient">{{ingredients.ammount}} {{ingredients.name}}</li>
+    	</ul>
+    </div>
+
+</div>

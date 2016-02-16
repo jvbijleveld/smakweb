@@ -1,0 +1,13 @@
+/app/cache/*
+!app/cache/.gitkeep
+/app/logs/*
+!app/logs/.gitkeep
+/app/phpunit.xml
+/app/config/parameters.yml
+/bin/
+/vendor/*
+/composer.phar
+/web/bundles/
+/.openshift/
+/.project
+/.settings/

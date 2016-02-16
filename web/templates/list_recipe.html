@@ -1,0 +1,13 @@
+<div>
+	<h2>Recepten</h2>
+	<p>Lorum ipsum dingetje....</p>
+	
+	<p ng-hide="recipes.length">De recepten worden opgehaald...</p>
+	
+	<ul ng-repeat="recipe in recipes">
+		<li>
+			<a ng-href="#/recipe/{{recipe.id}}">{{recipe.name}}</a>
+		</li>
+	</ul>
+
+</div>

@@ -1,0 +1,78 @@
+@charset "ISO-8859-1";
+BODY {
+    background-color: #ddd;
+}
+
+ul {
+    padding: 0;	
+}
+
+li {
+	list-style: none;
+}
+
+.centered {
+    left: 50%;
+    position: fixed;
+    top: 0;
+    transform: translate(-50%, 0px);
+}
+.container-fluid .centered {
+    background-color: white;
+    width: 600px;
+}
+.viewContainer {
+    margin: 0 20px;
+}
+.footer {
+    color: #999;
+    font-size: 0.9em;
+    margin-top: 30px;
+    padding: 5px 20px;
+}
+
+.recipeContainer .glyphicon {
+	float: right;
+}
+
+.recipeContainer input,
+.recipeContainer textarea {
+	width: 85%;
+}
+
+.recipeContainer textarea {
+    height: 75px;
+}
+
+.instructionContainer {
+	margin-bottom: 5px;
+	border: 1px solid #333;
+	padding: 10px;
+}
+
+.instructionContainer .ingredient {
+	font-size: 0.9em;
+	padding: 0;
+}
+
+.buttonContainer {
+	padding: 10px;
+}
+
+.addIngredient {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border: 1px solid 
+}
+
+.addIngredient li{
+	height: 2em;
+}
+
+.addIngredient label {
+	width: 125px;
+}
+
+.addIngredient input {
+	width: 145px;
+}
