@@ -49,7 +49,7 @@ Class RecipeService extends RecipeRepository{
 		$recipeEntity->setCourse($recipe->getCourse());
 		
 		foreach ($recipe->getInstructions() as $instruction){
-			if(empty($instruction->getId())){
+			if(!$instruction->getId()){
 				$instructionEntity = self::addInstruction($recipeEntity, $instruction);
 			}else{
 				$instructionEntity = self::getInstructionById($instruction->getId());
@@ -57,7 +57,7 @@ Class RecipeService extends RecipeRepository{
 			}
 			
 			foreach($instruction->getIngredients() as $ingredient){
-				if(empty($ingredient->getId())){
+				if(!$ingredient->getId()){
 					$ingredientEntity = self::addIngredient($instructionEntity, $ingredient);
 				}else{
 					$ingredientEntity = self::getIngredientById($ingredient->getId());
