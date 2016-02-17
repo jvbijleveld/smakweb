@@ -12,3 +12,4 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     secret:            ThisTokenIsNotSoSecretChangeIt
+    database_driver:
