@@ -1,5 +1,7 @@
 var recipeControllers = angular.module('recipeControllers',[]);
 
+
+
 recipeControllers.controller('ShowRecipeCtrl',['$scope','$http','$routeParams',
     function($scope, $http, $routeParams){
 		$http.get('/recipe/' + $routeParams.recipeId).success(function(data){
@@ -12,9 +14,15 @@ recipeControllers.controller('ShowRecipeCtrl',['$scope','$http','$routeParams',
 			});
 		};
 		
+		$scope.addIngredient = function(ingredient, instruction){
+			ingredient.id = '';
+			instruction.ingredients = ingredient;
+			$scope.addInstruction(instruction);
+		};
+		
 		$scope.addInstruction = function(data){
-			data.ingredients = new Array();
-			data.id = '';
+			//data.ingredients = newIngredients;
+			//data.id='';
 			$scope.recipe.instructions.push(data);
 			$scope.saveRecipe($scope.recipe);
 			$scope.newInstruction = null;

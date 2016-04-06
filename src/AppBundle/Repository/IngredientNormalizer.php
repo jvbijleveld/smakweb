@@ -5,17 +5,19 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Domain\Ingredient;
-Class IngredientNormalizer {
+use AppBundle\Repository\BaseNormalizer;
+
+Class IngredientNormalizer extends BaseNormalizer{
 
 	private $ingredient;
 
 	//TODO: put this in a proper normalizer
 	public function normalize($object){
 		$ingredient = new Ingredient();
-		$ingredient->setId($object['id']);
-		$ingredient->setName($object['name']);
-		$ingredient->setAmmount($object['ammount']);
-		$ingredient->setDetails($object['details']);
+		$ingredient->setId(self::getDataValue($object,'id'));
+		$ingredient->setName(self::getDataValue($object,'name'));
+		$ingredient->setAmmount(self::getDataValue($object,'ammount'));
+		$ingredient->setDetails(self::getDataValue($object,'details'));
 		return $ingredient;
 	}
 }

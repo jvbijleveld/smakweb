@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Debug\ExceptionHandler;
 
 use AppBundle\Domain\Recipe;
 use AppBundle\Domain\Ingredient;
@@ -39,12 +40,19 @@ Class RecipeController extends BaseJsonResponse{
 	 */
 	public function saveRecipe($id, Request $request){
 		$normalizer = New RecipeNormalizer();
+		self::getRecipe($id);
+		
 		$recipeService = $this->get(self::RECIPE_SERVICE);
 		$data = json_decode($request->getContent(), true);
+		
 		$recipe = $normalizer->normalize($data);
 		
-		$newrecipe = $recipeService->updateRecipe($id, $recipe);
-		return $this->writeJson($newrecipe);
+		try{
+			$newrecipe = $recipeService->updateRecipe($id, $recipe);
+			return $this->writeJson($newrecipe);
+		}catch(Exception $e){
+			http_response_code(400);
+		}
 	}
 	
 	/**

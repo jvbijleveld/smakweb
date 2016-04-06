@@ -6,8 +6,8 @@
     <p><textarea ng-model="recipe.description">{{recipe.description}}</textarea></p>
     
     <p ng-hide="recipe">Het recept wordt opgehaald...</p>
-    <h3>Ingredienten</h3>
-    <div ng-repeat="instruction in recipe.instructions">
+    <h3>Hoe te maken</h3>
+    <div ng-repeat="instruction in recipe.instructions" class="instructionContainer">
         <p class="instruction">{{instruction.instruction}}</p>
         <ul>
         	<li ng-repeat="ingredients in instruction.ingredients" class="ingredient">{{ingredients.ammount}} {{ingredients.name}}</li>
@@ -16,13 +16,19 @@
     
     <div class="glyphicon glyphicon-plus"  ng-click="boolAddInstruction = true" ng-hide="boolAddInstruction"></div></a>
         
-    <div class="addInstruction" ng-show="boolAddInstruction">
+    <div class="addInstruction" ng-show="boolAddInstruction" >
         <div class="glyphicon glyphicon-minus" ng-click="boolAddInstruction = false"></div></a>
         <p>voeg een stap toe</p>
         <input type=text ng-model="newInstruction.instruction" placeholder="Wat moet er gebeuren">
-        
-        
-        <a href ng-click="addInstruction(newInstruction);"><div class="glyphicon glyphicon-floppy-save"></div></a>
+        <p>
+        	<input type="text" ng-model="newIngredient.ammount" placeholder="Hoeveel">
+        	<input type="text" ng-model="newIngredient.name" placeholder="Ingredient">
+       	</p>
+       	<a href ng-click="addIngredient(newIngredient, newInstruction);"><div class="glyphicon glyphicon-floppy-save"></div></a>
+         <br>
+         <br>
+    	
     </div>
+    
 
 </div>

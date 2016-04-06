@@ -11,6 +11,7 @@ use AppBundle\Entity\IngredientEntity;
 use AppBundle\Entity\RecipeEntity;
 use AppBundle\Repository\IngredientWrapper;
 use AppBundle\Repository\InstructionWrapper;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 Class RecipeService extends RecipeRepository{
 	
@@ -18,7 +19,11 @@ Class RecipeService extends RecipeRepository{
 	
 	public function getRecipe($id){
 		$mapper = new RecipeMapper();
-		return $mapper->map(self::getRecipeById($id));
+		$recipeEntity = self::getRecipeById($id);
+		if(!$recipeEntity){
+			throw new NotFoundHttpException("Recipe ".$id ." not found");
+		}
+		return $mapper->map($recipeEntity);
 	}
 	
 	public function getAllRecipes(){
@@ -73,6 +78,9 @@ Class RecipeService extends RecipeRepository{
 	
 	public function addIngredient($instructionEntity, $ingredient){
 		$ingredientWrapper = new IngredientWrapper();
+		if(!$ingredient->getName()){
+			return;
+		}
 		$ingredientEntity = $ingredientWrapper->wrap($ingredient);
 		$ingredientEntity->setInstructionEntity($instructionEntity);
 		$instructionEntity->addIngredient($ingredientEntity);

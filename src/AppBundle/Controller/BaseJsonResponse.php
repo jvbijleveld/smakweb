@@ -34,5 +34,6 @@ Class BaseJsonResponse extends Controller {
 	protected function deserialize($data, $object){
 		return $this->serializer->deserialize($data,'Ingredient','json');
 	}
-	
 }
+
+?>

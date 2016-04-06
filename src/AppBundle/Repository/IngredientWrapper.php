@@ -12,7 +12,7 @@ Class IngredientWrapper{
 	
 	public function wrap($ingredient){
 		$ingredientEntity = new IngredientEntity();
-		
+				
 		$ingredientEntity->setName($ingredient->getName());
 		$ingredientEntity->setAmmount($ingredient->getAmmount());
 		$ingredientEntity->setDetails($ingredient->getDetails());
