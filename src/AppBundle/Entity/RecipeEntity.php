@@ -49,8 +49,6 @@ Class RecipeEntity{
 		$this->instruction = new ArrayCollection();
 	}
 
-  
-
     /**
      * Get id
      *

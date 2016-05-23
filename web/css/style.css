@@ -11,15 +11,21 @@ li {
 	list-style: none;
 }
 
+.clear {
+	clear: both;
+}
+
 .centered {
     left: 50%;
     position: fixed;
     top: 0;
     transform: translate(-50%, 0px);
+    overflow-y: scroll;
 }
 .container-fluid .centered {
     background-color: white;
     width: 600px;
+    height: 97%;
 }
 .viewContainer {
     margin: 0 20px;
@@ -29,6 +35,7 @@ li {
     font-size: 0.9em;
     margin-top: 30px;
     padding: 5px 20px;
+    position: fixed;
 }
 
 .recipeContainer .glyphicon {
@@ -41,7 +48,11 @@ li {
 }
 
 .recipeContainer textarea {
-    height: 75px;
+    height: 2.5em;
+}
+
+.recipeContainer textarea:focus {
+	height: 4.5em;	
 }
 
 .instructionContainer {
@@ -52,7 +63,6 @@ li {
 
 .instructionContainer .ingredient {
 	font-size: 0.9em;
-	padding: 0;
 }
 
 .buttonContainer {
@@ -76,3 +86,20 @@ li {
 .addIngredient input {
 	width: 145px;
 }
+
+input.ingredient {
+	margin: 2px;
+	padding: 2px;
+	float: left;
+}
+
+input.ingredient.ammount {
+	width: 20%;
+	margin-right: 12px;
+}
+
+input.ingredient.name {
+	width: 62%;
+}
+
+

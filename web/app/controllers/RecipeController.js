@@ -16,13 +16,17 @@ recipeControllers.controller('ShowRecipeCtrl',['$scope','$http','$routeParams',
 		
 		$scope.addIngredient = function(ingredient, instruction){
 			ingredient.id = '';
-			instruction.ingredients = ingredient;
+			ingredient.details = '';
+			if(instruction.ingredients == undefined){
+				instruction.ingredients = new Array();
+			}
+			instruction.ingredients.push(ingredient);
 			$scope.addInstruction(instruction);
 		};
 		
 		$scope.addInstruction = function(data){
 			//data.ingredients = newIngredients;
-			//data.id='';
+			data.id='';
 			$scope.recipe.instructions.push(data);
 			$scope.saveRecipe($scope.recipe);
 			$scope.newInstruction = null;

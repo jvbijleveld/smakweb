@@ -54,22 +54,27 @@ Class RecipeService extends RecipeRepository{
 		$recipeEntity->setCourse($recipe->getCourse());
 		
 		foreach ($recipe->getInstructions() as $instruction){
-			if(!$instruction->getId()){
-				$instructionEntity = self::addInstruction($recipeEntity, $instruction);
-			}else{
-				$instructionEntity = self::getInstructionById($instruction->getId());
-				$instructionEntity->setInstruction($instruction->getInstruction());
-			}
-			
-			foreach($instruction->getIngredients() as $ingredient){
-				if(!$ingredient->getId()){
-					$ingredientEntity = self::addIngredient($instructionEntity, $ingredient);
+			if(!empty($instruction->getInstruction())){
+				if(!$instruction->getId()){
+					$instructionEntity = self::addInstruction($recipeEntity, $instruction);
 				}else{
-					$ingredientEntity = self::getIngredientById($ingredient->getId());
-					$ingredientEntity->setName($ingredient->getName());
-					$ingredientEntity->setAmmount($ingredient->getAmmount());
-					$ingredientEntity->setDetails($ingredient->getDetails());
-				}			
+					$instructionEntity = self::getInstructionById($instruction->getId());
+					$instructionEntity->setInstruction($instruction->getInstruction());
+				}
+				
+				foreach($instruction->getIngredients() as $ingredient){
+					if(!$ingredient->getId()){
+						$ingredientEntity = self::addIngredient($instructionEntity, $ingredient);
+					}else{
+						$ingredientEntity = self::getIngredientById($ingredient->getId());
+						$ingredientEntity->setName($ingredient->getName());
+						$ingredientEntity->setAmmount($ingredient->getAmmount());
+						$ingredientEntity->setDetails($ingredient->getDetails());
+					}			
+				}
+			} else {
+				$instructionEntity = self::getInstructionById($instruction->getId());
+				self::removeInstruction($recipeEntity, $instructionEntity);
 			}
 		}
 		self::flushRecipe($recipeEntity);
@@ -101,6 +106,12 @@ Class RecipeService extends RecipeRepository{
 		$this->em->flush();
 		
 		return $instructionEntity;
+	}
+	
+	private function removeInstruction($recipeEntity, $instructionEntity){
+		$recipeEntity->removeInstruction($instructionEntity);
+		$this->em->remove($instructionEntity);
+		$this->em->flush();
 	}
 }
 

@@ -7,11 +7,19 @@
     
     <p ng-hide="recipe">Het recept wordt opgehaald...</p>
     <h3>Hoe te maken</h3>
+    
     <div ng-repeat="instruction in recipe.instructions" class="instructionContainer">
-        <p class="instruction">{{instruction.instruction}}</p>
+        <textarea ng-model="instruction.instruction">{{instruction.instruction}}</textarea>
+        
+<!--         <p class="instruction">{{instruction.instruction}}</p> -->
+		<p ng-show="instruction.ingredients.length">Gebruikte ingredienten:</p>
         <ul>
-        	<li ng-repeat="ingredients in instruction.ingredients" class="ingredient">{{ingredients.ammount}} {{ingredients.name}}</li>
+        	<li ng-repeat="ingredients in instruction.ingredients" class="ingredient">
+	        	<input type="text" class="ingredient ammount" ng-model="ingredients.ammount" value="{{ingredients.ammount}}">
+    	    	<input type="text" class="ingredient name" ng-model="ingredients.name" value="{{ingredients.name}}">
+        	</li>
     	</ul>
+    	<div class="clear"></div>
     </div>
     
     <div class="glyphicon glyphicon-plus"  ng-click="boolAddInstruction = true" ng-hide="boolAddInstruction"></div></a>
